@@ -1,3 +1,4 @@
+import re
 import urllib.request
 import urllib.error
 
@@ -25,11 +26,34 @@ def get_html(url):
     return html
 
 
+# 获取病例帖中的数据
 def get_data(post_url):
     data_list = []
-    html = get_html(post_url)
-    print(html)
 
+    html = get_html(post_url)
+    soup = BeautifulSoup(html, 'html.parser')
+
+    # 该病例贴所在科室/大类department
+    department = soup.find_all('a', class_='noline')[0].string
+    data_list.append(department)
+
+    # 该病例贴的名称：
+    post_name = soup.select('#postview > table > tbody > tr > th > h1')[0].string
+    post_name = post_name.strip()
+    data_list.append(post_name)
+
+    # 该病例贴各楼层内容post_body_list
+    raw_post_body_list = soup.find_all('td', class_='postbody')
+    post_body_list = []
+    for item in raw_post_body_list:
+        data = ''
+        for content in item.contents:
+            if str(content.string).strip() != 'None':
+                data = data + str(content.string).strip()
+        post_body_list.append(data)
+    data_list.append(post_body_list)
+
+    print(data_list)
     return data_list
 
 
