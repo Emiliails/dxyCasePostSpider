@@ -7,9 +7,9 @@ http://www.dxy.cn/bbs/index.html
 
 ### 种类1
 
-+ 神经科学专业讨论版病例区 http://neuro.dxy.cn/bbs/board/46?cases=true
-+ 呼吸与胸部疾病讨论版病例区 http://chest.dxy.cn/bbs/board/58?cases=true
-+ 心血管专业讨论版病例区 http://cardiovascular.dxy.cn/bbs/board/47?cases=true
++ 神经科学专业讨论版病例区 http://neuro.dxy.cn/bbs/board/46?cases=true&tpg=1
++ 呼吸与胸部疾病讨论版病例区 http://chest.dxy.cn/bbs/board/58?cases=true&tpg=1
++ 心血管专业讨论版病例区 http://cardiovascular.dxy.cn/bbs/board/47?cases=true&tpg=1
 
 ### 种类2
   

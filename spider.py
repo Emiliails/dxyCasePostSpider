@@ -8,7 +8,8 @@ from bs4 import BeautifulSoup
 # 得到指定一个URL的网页内容
 def get_html(url):
     head = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) "
+                      "Chrome/87.0.4280.88 Safari/537.36 "
     }
 
     request = urllib.request.Request(url, headers=head)
@@ -24,6 +25,20 @@ def get_html(url):
         if hasattr(e, "reason"):
             print(e.reason)
     return html
+
+
+# 获取板块下的病例贴链接
+def get_post_url(department_url):
+    post_url_list = []
+
+    for i in range(1, 2):
+        department_page_url = department_url + str(i)
+        html = get_html(department_page_url)
+        soup = BeautifulSoup(html, "html.parser")
+        for item in soup.select('#col-2 > table.post-table > tbody > tr > td.news > a'):
+            post_url_list.append(item['href'])
+    print(post_url_list)
+    return post_url_list
 
 
 # 获取病例帖中的数据
@@ -59,7 +74,10 @@ def get_data(post_url):
 
 def main():
     post_url = "http://neuro.dxy.cn/bbs/topic/161751"
-    data_list = get_data(post_url)
+    # data_list = get_data(post_url)
+    # data_list = get_data('http://neuro.dxy.cn/bbs/topic/73425')
+    # data_list = get_data('http://neuro.dxy.cn/bbs/topic/62074')
+    post_url = get_post_url('http://neuro.dxy.cn/bbs/board/46?order=2&cases=true&tpg=')
 
 
 if __name__ == '__main__':
