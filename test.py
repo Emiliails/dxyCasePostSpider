@@ -32,7 +32,7 @@ def get_html(url):
 def get_post_url(department_url):
     post_url_list = []
 
-    for i in range(4, 10):
+    for i in range(21, 50):
         print('正在获取该板块病例贴链接')
         department_page_url = department_url + str(i)
         html = get_html(department_page_url)
@@ -53,9 +53,10 @@ def get_data(post_url):
     soup = BeautifulSoup(html, 'html.parser')
 
     # 该病例贴的名称：
-
+    if not soup.select('#postview > table > tbody > tr > th > h1'):
+        print('获取失败病例贴名称失败，跳过该病例贴')
+        return
     post_name = soup.select('#postview > table > tbody > tr > th > h1')[0].string
-
     post_name = post_name.strip()
     data_list.append(post_name)
 
@@ -81,9 +82,7 @@ def get_data(post_url):
     data_list.append(str(post_body_list))
     print(type(post_body_list[0]))
     print('该病例贴各楼层内容', post_body_list)
-
-    # print(data_list)
-    return data_list
+    save_data(data_list)
 
 
 def save_data(datalist):
@@ -100,12 +99,10 @@ def save_data(datalist):
 
 
 def main():
-    get_data('http://neuro.dxy.cn/bbs/topic/354810')
     # post_url = get_post_url('http://neuro.dxy.cn/bbs/board/46?order=2&cases=true&tpg=')
     # for item in post_url:
-    #     data_list = get_data(item)
-    #     save_data(data_list)
-
+    #     get_data(item)
+    get_data('http://neuro.dxy.cn/bbs/topic/2235115')
 
 if __name__ == '__main__':
     main()
