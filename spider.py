@@ -32,7 +32,7 @@ def get_html(url):
 def get_post_url(department_url):
     post_url_list = []
 
-    for i in range(20, 21):
+    for i in range(21, 50):
         print('正在获取该板块病例贴链接')
         department_page_url = department_url + str(i)
         html = get_html(department_page_url)
