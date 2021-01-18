@@ -32,7 +32,7 @@ def get_html(url):
 def get_post_url(department_url):
     post_url_list = []
 
-    for i in range(21, 50):
+    for i in range(1, 100):
         print('正在获取该板块病例贴链接')
         department_page_url = department_url + str(i)
         html = get_html(department_page_url)
@@ -99,10 +99,10 @@ def save_data(datalist):
 
 
 def main():
-    # post_url = get_post_url('http://neuro.dxy.cn/bbs/board/46?order=2&cases=true&tpg=')
+    # post_url = get_post_url('http://neuro.dxy.cn/bbs/board/58?order=2&cases=true&tpg=')
     # for item in post_url:
     #     get_data(item)
-    get_data('http://neuro.dxy.cn/bbs/topic/2235115')
+    get_data('http://chest.dxy.cn/bbs/topic/44488738')
 
 if __name__ == '__main__':
     main()

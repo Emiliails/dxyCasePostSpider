@@ -99,7 +99,8 @@ def save_data(datalist):
 
 
 def main():
-    post_url = get_post_url('http://neuro.dxy.cn/bbs/board/58?order=2&cases=true&tpg=')
+    # post_url = get_post_url('http://neuro.dxy.cn/bbs/board/58?order=2&cases=true&tpg=')
+    post_url = get_post_url('http://www.dxy.cn/bbs/board/100?order=2&cases=true&tpg=')
     for item in post_url:
         get_data(item)
 
